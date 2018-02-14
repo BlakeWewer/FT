@@ -10,13 +10,22 @@ namespace WewerFamilyTree
     class FT<Person>
     {
         private List<Person> _people;
-        private Dictionary<Person, List<Person>> _children;
         private int _size;
+        protected string _curFile;
         
+        // Methods Needed:
+        // Load Tree - Way for FT to read information from a chosen txt file (return bool - true if read, false if it doesn't exist) //Ticker501->Account.cs->readTransactionHistory is a good example
+        // Save Tree - Way for FT to write information to the current txt file
+        // New Tree - Write existing tree to a different file and clear main file
+        // Add people to list 
+        // Search for and return people
+        // Draw Tree
+        // Update Person already in graph
+
+
         public FT()
         {
             _people = new List<Person>();
-            _children = new Dictionary<Person, List<Person>>();
             _size = 0;
         }
 
@@ -35,37 +44,21 @@ namespace WewerFamilyTree
                 return _people;
             }
         }
-
-        public List<Person> GetOutgoing(Person n)
-        {
-            return _children[n];
-        }
-
+       
         public bool ContainsPerson(Person person)
         {
             return _people.Contains(person);
         }
 
-        public void AddPerson(Person a)
+        public bool LoadTree(string path)
         {
-            if (ContainsPerson(a))
-            {
-                MessageBox.Show(a.ToString() + " is already in the database.");
-                return;
-            }
-
-            _people.Add(a);
-            _children.Add(a, new List<Person>());
-            _size++;
+            
         }
 
-        public void AddChild(Person cur, Person child, double val)
+        public void SaveTree()
         {
-            //only adds in one direction
-            AddPerson(cur);
-            AddPerson(child);
 
-            _children[cur].Add(child);
         }
+
     }
 }
